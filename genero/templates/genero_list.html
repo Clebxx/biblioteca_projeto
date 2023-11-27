@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Gêneros</h1>
+  <ul>
+    {% for genero in generos %}
+      <li><a href="{% url 'genero_detail' pk=genero.pk %}">{{ genero.nome }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'genero_new' %}">Adicionar Gênero</a>
+{% endblock %}

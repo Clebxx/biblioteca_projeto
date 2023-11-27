@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Editoras</h1>
+  <ul>
+    {% for editora in editoras %}
+      <li><a href="{% url 'editora_detail' pk=editora.pk %}">{{ editora.nome }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'editora_new' %}">Adicionar Editora</a>
+{% endblock %}

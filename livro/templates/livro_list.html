@@ -1,0 +1,12 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h1>Livros</h1>
+  <ul>
+    {% for livro in livros %}
+      <li><a href="{% url 'livro_detail' pk=livro.pk %}">{{ livro.titulo }}</a></li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'livro_list' %}">Lista de Livros</a>
+
+{% endblock %}
