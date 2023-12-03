@@ -6,6 +6,23 @@
   <title>{% block title %} Biblioteca Opções  {% endblock %}</title>
 </head>
 <body>
-  
+  <nav>
+    <div>
+        <span>Biblioteca</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="container">
+    {% block content %}
+    <h1>Entidades Disponíveis</h1>
+    <ul>
+      <li><a href="livros">Livros</a></li>
+      <li><a href="autores">Autores</a></li>
+      <li><a href="editoras">Editoras</a></li>
+      <li><a href="generos">Gêneros</a></li>
+    </ul>
+    {% endblock %}
+  </div>
 </body>
 </html>
