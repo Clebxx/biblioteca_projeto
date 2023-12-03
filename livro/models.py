@@ -9,13 +9,13 @@ class Autor(models.Model):
         return f"{self.nome}"
 
 class Livro(models.Model):
-    titulo = models.CharField(max_length=100)
+    nome = models.CharField(max_length=100)
     autores = models.ManyToManyField('Autor')
     editora = models.ForeignKey('Editora', on_delete=models.CASCADE)
     generos = models.ManyToManyField('Genero')
 
     def __str__(self):
-        return self.titulo
+        return self.nome
     
 class Genero(models.Model):
     nome = models.CharField(max_length=50)
