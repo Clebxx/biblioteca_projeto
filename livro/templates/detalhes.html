@@ -3,13 +3,13 @@
 {% block title %} {{ object.nome }} Detalhes {% endblock %}
 
 {% block content %}
-  <h1>Detalhes de {{ object.nome }}</h1>
+  <h1 class="mt-3 mb-3">Detalhes de {{ object.nome }}</h1>
   {% for field, value in object.items %}
-    <ul>
-      <li>{{ field }}: {{ value }}</li>
+    <ul class="list-group">
+      <li class="mb-2 mt-2 list-group-item">{{ field }}: {{ value }}</li>
     </ul>
   {% endfor %}
-  <button onclick="location.href='/biblioteca/{{ Model }}/editar/{{object.id}}'">Editar</button>
-  <button onclick="location.href='/biblioteca/{{ Model }}/deletar/{{object.id}}'">Deletar</button>
-  <button onclick="location.href='/biblioteca/{{ Model }}'">Voltar</button>
+  <button class="btn btn-outline-primary" onclick="location.href='/biblioteca/{{ Model }}/editar/{{object.id}}'">Editar</button>
+  <button class="btn btn-outline-danger" onclick="location.href='/biblioteca/{{ Model }}/deletar/{{object.id}}'">Deletar</button>
+  <button class="btn btn-outline-primary" onclick="location.href='/biblioteca/{{ Model }}'">Voltar</button>
 {% endblock %}
