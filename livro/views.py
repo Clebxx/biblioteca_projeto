@@ -1,8 +1,25 @@
 from django.shortcuts import render
 from django.views import View
-from django.views.generic.list import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView
 from .models import Livro, Autor, Editora, Genero
+from django.db.models import ManyToManyField
+
+def get_field_values(instance): # Pegando os campos dos modelos
+  field_values = {}
+  fields = instance._meta.get_fields(include_hidden=True)
+
+  for field in fields:
+    try:
+      if isinstance(field, ManyToManyField):
+        related_objects = getattr(instance, field.name).all()
+        field_values[field.name] = ', '.join(str(obj) for obj in related_objects)
+      else:
+        field_values[field.name] = getattr(instance, field.name)
+    except Exception:
+        pass
+
+  return field_values
 
 class home(View):
     def get(self, request):
@@ -12,8 +29,6 @@ class livro_list(ListView):
     model = Livro
     
     def get(self, request):
-        print(Livro.objects.all())
-
         return render(request, 'objetos.html', {'objects': Livro.objects.all(), 'Model': 'livros'})
 
 class autor_list(ListView):
@@ -76,4 +91,44 @@ class genero_add(CreateView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     context['title'] = 'Adicionando Gênero'
+    return context
+
+class livro_detail(DetailView):
+  model = Livro
+  template_name = 'detalhes.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)   
+    context['object'] = get_field_values(context['object'])
+    context['Model'] = 'livros'
+    return context
+
+class autor_detail(DetailView):
+  model = Autor
+  template_name = 'detalhes.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)   
+    context['object'] = get_field_values(context['object'])
+    context['Model'] = 'autores'
+    return context
+  
+class editora_detail(DetailView):
+  model = Editora
+  template_name = 'detalhes.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)   
+    context['object'] = get_field_values(context['object'])
+    context['Model'] = 'editoras'
+    return context
+  
+class genero_detail(DetailView):
+  model = Genero
+  template_name = 'detalhes.html'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)   
+    context['object'] = get_field_values(context['object'])
+    context['Model'] = 'generos'
     return context

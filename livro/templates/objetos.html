@@ -1,5 +1,7 @@
 {% extends 'home-page.html' %}
 
+{% block title %} {{ Model | capfirst }} {% endblock %}
+
 {% block content %}
   <h1>Lista de {{ Model | capfirst }}</h1>
   {% for instance in objects %}

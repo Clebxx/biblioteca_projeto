@@ -1,0 +1,15 @@
+{% extends 'home-page.html' %}
+
+{% block title %} {{ object.nome }} Detalhes {% endblock %}
+
+{% block content %}
+  <h1>Detalhes de {{ object.nome }}</h1>
+  {% for field, value in object.items %}
+    <ul>
+      <li>{{ field }}: {{ value }}</li>
+    </ul>
+  {% endfor %}
+  <button onclick="location.href='/biblioteca/{{ Model }}/editar/{{object.id}}'">Editar</button>
+  <button onclick="location.href='/biblioteca/{{ Model }}/deletar/{{object.id}}'">Deletar</button>
+  <button onclick="location.href='/biblioteca/{{ Model }}'">Voltar</button>
+{% endblock %}
