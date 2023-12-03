@@ -1,0 +1,12 @@
+{% extends 'home-page.html' %}
+
+{% block title %} Deletando {{ object.nome }} {% endblock %}
+
+{% block content %}
+  <h1>{{ object.nome }} Deletar</h1>
+  <form method="post">{% csrf_token %}
+      <p>Tem certeza que quer deletar "{{ object }}"?</p>
+      <input type="submit" value="Deletar" />
+  </form>
+  <button onclick="location.href='/biblioteca/{{ Model }}'">Voltar</button>
+{% endblock %}

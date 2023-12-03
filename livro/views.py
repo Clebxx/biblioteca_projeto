@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Livro, Autor, Editora, Genero
 from django.db.models import ManyToManyField
 
@@ -176,3 +176,23 @@ class genero_update(UpdateView):
     context = super().get_context_data(**kwargs)
     context['title'] = 'Atualizando Gênero'
     return context
+
+class livro_delete(DeleteView):
+  model = Livro
+  success_url = '/biblioteca/livros'
+  template_name = 'deletar.html'
+
+class autor_delete(DeleteView):
+  model = Autor
+  success_url = '/biblioteca/autores'
+  template_name = 'deletar.html'
+
+class editora_delete(DeleteView):
+  model = Editora
+  success_url = '/biblioteca/editoras'
+  template_name = 'deletar.html'
+
+class genero_delete(DeleteView):
+  model = Genero
+  success_url = '/biblioteca/generos'
+  template_name = 'deletar.html'

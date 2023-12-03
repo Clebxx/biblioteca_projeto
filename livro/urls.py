@@ -19,4 +19,8 @@ urlpatterns = [
   path('autores/editar/<int:pk>', views.autor_update.as_view(), name='editar autor'),
   path('editoras/editar/<int:pk>', views.editora_update.as_view(), name='editar editora'),
   path('generos/editar/<int:pk>', views.genero_update.as_view(), name='editar genero'),
+  path('livros/deletar/<int:pk>', views.livro_delete.as_view(), name='deletar livro'),
+  path('autores/deletar/<int:pk>', views.autor_delete.as_view(), name='deletar autor'),
+  path('editoras/deletar/<int:pk>', views.editora_delete.as_view(), name='deletar editora'),
+  path('generos/deletar/<int:pk>', views.genero_delete.as_view(), name='deletar genero'),
 ]
