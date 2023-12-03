@@ -1,14 +1,18 @@
 # Tutorial Django
 
+## Diagrama
 
-Para criar um ambiente virtual:
+![Diagrama](./assets/biblioteca.png)
+
+## Ambiente Virtual
+
 ```bash
 py -m venv .venv
 .venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-Para iniciar o servidor execute o comando abaixo:
+## Iniciando servidor
 
 ```bash
 python3 manage.py runserver
