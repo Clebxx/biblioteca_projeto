@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from .models import Livro, Autor, Editora, Genero
 from django.db.models import ManyToManyField
 
@@ -131,4 +131,48 @@ class genero_detail(DetailView):
     context = super().get_context_data(**kwargs)   
     context['object'] = get_field_values(context['object'])
     context['Model'] = 'generos'
+    return context
+
+class livro_update(UpdateView):
+  model = Livro
+  fields = ['nome', 'editora' ,'autores', 'generos']
+  template_name = 'forms.html'
+  success_url = '/biblioteca/livros'
+  
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['title'] = 'Atualizando Livro'
+    return context
+
+class autor_update(UpdateView):
+  model = Autor
+  fields = ['nome', 'nascimento', 'nacionalidade']
+  template_name = 'forms.html'
+  success_url = '/biblioteca/autores'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['title'] = 'Atualizando Autor'
+    return context
+  
+class editora_update(UpdateView):
+  model = Editora
+  fields = ['nome', 'cidade', 'website']
+  template_name = 'forms.html'
+  success_url = '/biblioteca/editoras'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['title'] = 'Atualizando Editora'
+    return context
+  
+class genero_update(UpdateView):
+  model = Genero
+  fields = ['nome']
+  template_name = 'forms.html'
+  success_url = '/biblioteca/generos'
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['title'] = 'Atualizando Gênero'
     return context
